@@ -1,0 +1,145 @@
+{
+  "players": [
+    {
+      "id": 0,
+      "name": "a",
+      "password": "a",
+      "coins": 83509,
+      "kills": 1811,
+      "level": 9,
+      "ship": 4,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 35,
+          "shield": 100,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 50
+        },
+        {
+          "num": 2,
+          "unlock": true,
+          "speed": 35,
+          "shield": 12,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 50
+        },
+        {
+          "num": 3,
+          "unlock": true,
+          "speed": 35,
+          "shield": 69,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 50
+        },
+        {
+          "num": 4,
+          "unlock": true,
+          "speed": 35,
+          "shield": 100,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 50
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Marek",
+      "password": "1111",
+      "coins": 109,
+      "kills": 195,
+      "level": 1,
+      "ship": 2,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 35,
+          "shield": 42,
+          "guns": 3,
+          "loading": 20,
+          "magazine": 50
+        },
+        {
+          "num": 2,
+          "unlock": true,
+          "speed": 10,
+          "shield": 12,
+          "guns": 1,
+          "loading": 18,
+          "magazine": 50
+        },
+        {
+          "num": 3,
+          "unlock": false,
+          "speed": 7,
+          "shield": 14,
+          "guns": 1,
+          "loading": 16,
+          "magazine": 50
+        },
+        {
+          "num": 4,
+          "unlock": false,
+          "speed": 8,
+          "shield": 16,
+          "guns": 1,
+          "loading": 14,
+          "magazine": 50
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Filip",
+      "password": "prdko",
+      "coins": 991888784,
+      "kills": 10000161,
+      "level": 9,
+      "ship": 4,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 35,
+          "shield": 100,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 150
+        },
+        {
+          "num": 2,
+          "unlock": true,
+          "speed": 35,
+          "shield": 100,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 150
+        },
+        {
+          "num": 3,
+          "unlock": true,
+          "speed": 7,
+          "shield": 14,
+          "guns": 1,
+          "loading": 11,
+          "magazine": 60
+        },
+        {
+          "num": 4,
+          "unlock": true,
+          "speed": 35,
+          "shield": 100,
+          "guns": 3,
+          "loading": 3,
+          "magazine": 150
+        }
+      ]
+    }
+  ]
+}
