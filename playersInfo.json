@@ -4,24 +4,24 @@
       "id": 0,
       "name": "a",
       "password": "a",
-      "coins": 83509,
-      "kills": 1811,
+      "coins": 70579,
+      "kills": 1929,
       "level": 9,
       "ship": 4,
       "ships": [
         {
           "num": 1,
           "unlock": true,
-          "speed": 35,
-          "shield": 100,
+          "speed": 30,
+          "shield": 50,
           "guns": 3,
           "loading": 3,
-          "magazine": 50
+          "magazine": 55
         },
         {
           "num": 2,
           "unlock": true,
-          "speed": 35,
+          "speed": 30,
           "shield": 12,
           "guns": 3,
           "loading": 3,
@@ -30,8 +30,8 @@
         {
           "num": 3,
           "unlock": true,
-          "speed": 35,
-          "shield": 69,
+          "speed": 30,
+          "shield": 43,
           "guns": 3,
           "loading": 3,
           "magazine": 50
@@ -39,8 +39,8 @@
         {
           "num": 4,
           "unlock": true,
-          "speed": 35,
-          "shield": 100,
+          "speed": 30,
+          "shield": 28,
           "guns": 3,
           "loading": 3,
           "magazine": 50
@@ -51,15 +51,15 @@
       "id": 1,
       "name": "Marek",
       "password": "1111",
-      "coins": 109,
-      "kills": 195,
-      "level": 1,
-      "ship": 2,
+      "coins": 3409,
+      "kills": 435,
+      "level": 4,
+      "ship": 3,
       "ships": [
         {
           "num": 1,
           "unlock": true,
-          "speed": 35,
+          "speed": 28,
           "shield": 42,
           "guns": 3,
           "loading": 20,
@@ -76,10 +76,10 @@
         },
         {
           "num": 3,
-          "unlock": false,
-          "speed": 7,
-          "shield": 14,
-          "guns": 1,
+          "unlock": true,
+          "speed": 17,
+          "shield": 21,
+          "guns": 3,
           "loading": 16,
           "magazine": 50
         },
@@ -97,7 +97,7 @@
     {
       "id": 2,
       "name": "Filip",
-      "password": "prdko",
+      "password": "lata",
       "coins": 991888784,
       "kills": 10000161,
       "level": 9,
@@ -106,8 +106,8 @@
         {
           "num": 1,
           "unlock": true,
-          "speed": 35,
-          "shield": 100,
+          "speed": 28,
+          "shield": 29,
           "guns": 3,
           "loading": 3,
           "magazine": 150
@@ -115,8 +115,8 @@
         {
           "num": 2,
           "unlock": true,
-          "speed": 35,
-          "shield": 100,
+          "speed": 28,
+          "shield": 33,
           "guns": 3,
           "loading": 3,
           "magazine": 150
@@ -133,11 +133,199 @@
         {
           "num": 4,
           "unlock": true,
-          "speed": 35,
-          "shield": 100,
+          "speed": 28,
+          "shield": 32,
           "guns": 3,
           "loading": 3,
           "magazine": 150
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Daniel",
+      "password": "lalok",
+      "coins": 75,
+      "kills": 225,
+      "level": 2,
+      "ship": 1,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 27,
+          "shield": 11,
+          "guns": 1,
+          "loading": 15,
+          "magazine": 50
+        },
+        {
+          "num": 2,
+          "unlock": false,
+          "speed": 6,
+          "shield": 12,
+          "guns": 1,
+          "loading": 13,
+          "magazine": 55
+        },
+        {
+          "num": 3,
+          "unlock": false,
+          "speed": 7,
+          "shield": 14,
+          "guns": 1,
+          "loading": 11,
+          "magazine": 60
+        },
+        {
+          "num": 4,
+          "unlock": false,
+          "speed": 8,
+          "shield": 16,
+          "guns": 1,
+          "loading": 10,
+          "magazine": 65
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Jakub",
+      "password": "ahoj",
+      "coins": 0,
+      "kills": 0,
+      "level": 1,
+      "ship": 1,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 5,
+          "shield": 10,
+          "guns": 1,
+          "loading": 15,
+          "magazine": 50
+        },
+        {
+          "num": 2,
+          "unlock": false,
+          "speed": 6,
+          "shield": 12,
+          "guns": 1,
+          "loading": 13,
+          "magazine": 55
+        },
+        {
+          "num": 3,
+          "unlock": false,
+          "speed": 7,
+          "shield": 14,
+          "guns": 1,
+          "loading": 11,
+          "magazine": 60
+        },
+        {
+          "num": 4,
+          "unlock": false,
+          "speed": 8,
+          "shield": 16,
+          "guns": 1,
+          "loading": 10,
+          "magazine": 65
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Andrej",
+      "password": "ako",
+      "coins": 0,
+      "kills": 0,
+      "level": 1,
+      "ship": 1,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 5,
+          "shield": 10,
+          "guns": 1,
+          "loading": 15,
+          "magazine": 50
+        },
+        {
+          "num": 2,
+          "unlock": false,
+          "speed": 6,
+          "shield": 12,
+          "guns": 1,
+          "loading": 13,
+          "magazine": 55
+        },
+        {
+          "num": 3,
+          "unlock": false,
+          "speed": 7,
+          "shield": 14,
+          "guns": 1,
+          "loading": 11,
+          "magazine": 60
+        },
+        {
+          "num": 4,
+          "unlock": false,
+          "speed": 8,
+          "shield": 16,
+          "guns": 1,
+          "loading": 10,
+          "magazine": 65
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Miso",
+      "password": "kukurica",
+      "coins": 0,
+      "kills": 0,
+      "level": 1,
+      "ship": 1,
+      "ships": [
+        {
+          "num": 1,
+          "unlock": true,
+          "speed": 5,
+          "shield": 10,
+          "guns": 1,
+          "loading": 15,
+          "magazine": 50
+        },
+        {
+          "num": 2,
+          "unlock": false,
+          "speed": 6,
+          "shield": 12,
+          "guns": 1,
+          "loading": 13,
+          "magazine": 55
+        },
+        {
+          "num": 3,
+          "unlock": false,
+          "speed": 7,
+          "shield": 14,
+          "guns": 1,
+          "loading": 11,
+          "magazine": 60
+        },
+        {
+          "num": 4,
+          "unlock": false,
+          "speed": 8,
+          "shield": 16,
+          "guns": 1,
+          "loading": 10,
+          "magazine": 65
         }
       ]
     }

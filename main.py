@@ -102,7 +102,34 @@ class Main:
 
         # --- help section --- dokoncit
         def help():
-            ...
+            def back():
+                # --- clear screen and call main ---
+                message.destroy()
+                back_b.destroy()
+                self.main_screen()
+            destroy()
+            back_b = Button(self.root, text="Back", command=back, width=8, height=2)
+            back_b.place(x=50, y=30, anchor=CENTER)
+            message = Message(self.root,
+            text="""
+This is an old fashioned game created to bring some memories from your childhood.\n
+Here are the game's instructions:
+        Every time your want to load the game you have to sign in to\n        your account, if you do not have one, register first.
+        Once you signed in/registered you are free to use all your money\n        to buy new ships and upgrade their gear.
+        You can switch among ships and levels anytime, as long as they\n        are available for you.
+        If you wish to play and earn some money, simply go to the\n        garage or the level room and press the 'play' button.
+Earning money:
+        For a regular meteor you get 5$, for an enemy ship 100$ and\n        there are also special meteors appearing occasionally.
+The goal of the game:
+        Get to the final level, where there is the main enemy ship waiting\n        for you. Destroy it and save the universe!\n
+Usage of buttons:
+        <LEFT>, <RIGHT> : control your ship and move it to sides
+        <SPACE> : fire a shot, be careful, you can run out of them
+        <R> : reload the magazine
+        <ESC> : pause the game
+    """, width=450)
+            # message.place(anchor=W)
+            message.place(x=20, y=275, anchor=W)
 
         if self.back_b:
             self.back_b.destroy()
@@ -124,23 +151,15 @@ class Main:
         if main:
             with open("playersInfo.json", "r") as file:
                 data = json.load(file)
-                #print(data)
-                if self.id:
-                    for person in data["players"]:
-                        if self.id == person["id"]:
-                            self.attributes["id"] = person["id"]
-                            #self.attributes["name"] = prvok["name"]
-                            self.attributes["level"] = person["level"]
-                            self.attributes["ship"] = person["ship"]
-                            self.attributes["coins"] = person["coins"]
-                            self.attributes["current_ship"] = person["ship"]
-                            self.attributes["current_level"] = person["level"]
-                            self.attributes["kills"] = person["kills"]
-                else:
-                    for person in data["players"]:
-                        if self.name_info == person["name"]:
-                            self.id = person["id"]
-                            self.update_player_information(True)
+                for person in data["players"]:
+                    if self.id == person["id"]:
+                        self.attributes["id"] = person["id"]
+                        self.attributes["level"] = person["level"]
+                        self.attributes["ship"] = person["ship"]
+                        self.attributes["coins"] = person["coins"]
+                        self.attributes["current_ship"] = person["ship"]
+                        self.attributes["current_level"] = person["level"]
+                        self.attributes["kills"] = person["kills"]
         else:
             with open("playersInfo.json", "r") as file:
                 data = json.load(file)
@@ -148,7 +167,6 @@ class Main:
                     if self.id == person["id"]:
                         for ship in person["ships"]:
                             if ship["num"] == self.num:
-                                # print('nacitavam')
                                 self.current_ship["speed"] = ship["speed"]
                                 self.current_ship["shield"] = ship["shield"]
                                 self.current_ship["guns"] = ship["guns"]
@@ -216,6 +234,8 @@ class Main:
             self.name_info = name_entry.get()
             password_info = password_entry.get()
             if check_data(password_info):
+                self.update_player_information(True)
+                self.update_player_information(False)
                 name_entry.destroy()
                 password_entry.destroy()
                 submit.destroy()
@@ -249,6 +269,9 @@ class Main:
 
         # --- new player section ---
     def register(self):
+
+        with open("playersInfo.json", "r") as f:
+            data = json.load(f)
 
         def back():
             # --- clear screen and call main_screen ---
@@ -284,13 +307,20 @@ class Main:
                     json.dump(data, file, indent=2)
 
             def check_data(password):
+                for person in data["players"]:
+                    if person["name"] == self.name_info:
+                        self.info_label.configure(text=f'Name already used!')
+                        return False
                 if password != "password" and password != "":
                     return True
+                self.info_label.configure(text=f'Incorrect format of password!')
                 return False
 
             self.name_info = name_entry.get()
             password_info = password_entry.get()
             if check_data(password_info):
+                self.update_player_information(True)
+                self.update_player_information(False)
                 name_entry.destroy()
                 password_entry.destroy()
                 submit.destroy()
@@ -298,8 +328,6 @@ class Main:
                 self.info_label.configure(text=f'Welcome {self.name_info}!')
                 self.back_b.destroy()
                 self.account_screen()
-            else:
-                self.info_label.configure(text=f'Password missing!')
 
         # --- create back button ---
         self.back_b = Button(self.root, text="Back", command=back, width=8, height=2)
@@ -326,8 +354,6 @@ class Main:
     def account_screen(self):
         self.choose_bc = None
         self.choose_b = None
-        self.update_player_information(True)
-        self.update_player_information(False)
         # print(self.attributes)
 
         def destroy_main():
@@ -477,34 +503,34 @@ class Main:
                 spaceShipImg.configure(image=self.ship_shop_path[self.num - 1])
                 if self.getattr('unlock', False):
                     if self.getattr("ship", True) >= self.num:
-                        if self.getattr('speed', False) < 35:
+                        if self.getattr('speed', False) < 30:
                             self.speed_label.configure(text=f"speed : {self.getattr('speed', False)}")
-                            self.speed_up.configure(text=f"upgrade for {self.getattr('speed', False) * 50} $", state=NORMAL)
+                            self.speed_up.configure(text=f"upgrade for {self.getattr('speed', False) * 20} $", state=NORMAL)
                         else:
                             self.speed_label.configure(text=f"speed : {self.getattr('speed', False)}")
                             self.speed_up.configure(text="max", state=DISABLED)
-                        if self.getattr('shield', False) < 100:
+                        if self.getattr('shield', False) < 50:
                             self.shield_label.configure(text=f"shield : {self.getattr('shield', False)}")
-                            self.shield_up.configure(text=f"upgrade for {self.getattr('shield', False) * 100} $", state=NORMAL)
+                            self.shield_up.configure(text=f"upgrade for {self.getattr('shield', False) * 20} $", state=NORMAL)
                         else:
                             self.shield_label.configure(text=f"shield : {self.getattr('shield', False)}")
                             self.shield_up.configure(text="max", state=DISABLED)
                         if self.getattr('guns', False) < 3:
                             #print(self.getattr("guns", False), 3)
                             self.guns_label.configure(text=f"guns : {self.getattr('guns', False)}")
-                            self.guns_up.configure(text=f"upgrade for {self.getattr('guns', False) * 800} $", state=NORMAL)
+                            self.guns_up.configure(text=f"upgrade for {self.getattr('guns', False) * 1000} $", state=NORMAL)
                         else:
                             self.guns_up.configure(text="max", state=DISABLED)
                             self.guns_label.configure(text=f"guns : {self.getattr('guns', False)}")
                         if self.getattr('loading', False) > 3:
-                            self.loading_label.configure(text=f"reloading time : {self.getattr('loading', False)}")
-                            self.loading_up.configure(text=f"upgrade for {self.getattr('loading', False) * 250} $", state=NORMAL)
+                            self.loading_label.configure(text=f"reloading magazine time : {self.getattr('loading', False)}")
+                            self.loading_up.configure(text=f"upgrade for {self.getattr('loading', False) * 20} $", state=NORMAL)
                         else:
                             self.loading_up.configure(text="max", state=DISABLED)
-                            self.loading_label.configure(text=f"reloading time : {self.getattr('loading', False)}")
-                        if self.getattr('magazine', False) < 150:
+                            self.loading_label.configure(text=f"reloading magazine time : {self.getattr('loading', False)}")
+                        if self.getattr('magazine', False) < 100:
                             self.magazine_label.configure(text=f"magazine capacity : {self.getattr('magazine', False)}")
-                            self.magazine_up.configure(text=f"upgrade for {self.getattr('magazine', False) * 150} $", state=NORMAL)
+                            self.magazine_up.configure(text=f"upgrade for {self.getattr('magazine', False) * 20} $", state=NORMAL)
                         else:
                             self.magazine_up.configure(text="max", state=DISABLED)
                             self.magazine_label.configure(text=f"magazine capacity : {self.getattr('magazine', False)}")
@@ -512,18 +538,18 @@ class Main:
                         self.speed_label = Label(self.root, text=f"speed : {self.getattr('speed', False)}", width=25)
                         self.shield_label = Label(self.root, text=f"shield : {self.getattr('shield', False)}", width=25)
                         self.guns_label = Label(self.root, text=f"guns : {self.getattr('guns', False)}", width=25)
-                        self.loading_label = Label(self.root, text=f"reloading time : {self.getattr('loading', False)}", width=25)
+                        self.loading_label = Label(self.root, text=f"reloading magazine time : {self.getattr('loading', False)}", width=25)
                         self.magazine_label = Label(self.root, text=f"magazine capacity : {self.getattr('magazine', False)}", width=25)
                         self.speed_label.place(x=150, y=200, anchor=CENTER)
                         self.shield_label.place(x=150, y=250, anchor=CENTER)
                         self.guns_label.place(x=150, y=300, anchor=CENTER)
                         self.loading_label.place(x=150, y=350, anchor=CENTER)
                         self.magazine_label.place(x=150, y=400, anchor=CENTER)
-                        self.speed_up = Button(self.root, text=f"upgrade for {self.getattr('speed', False) * 50} $", command=upgrade_speed, width=18)
-                        self.shield_up = Button(self.root, text=f"upgrade for {self.getattr('shield', False) * 100} $", command=upgrade_shield, width=18)
-                        self.guns_up = Button(self.root, text=f"upgrade for {self.getattr('guns', False) * 800} $", command=upgrade_guns, width=18)
-                        self.loading_up = Button(self.root, text=f"upgrade for {self.getattr('loading', False) * 250} $", command=upgrade_loading, width=18)
-                        self.magazine_up = Button(self.root, text=f"upgrade for {self.getattr('magazine', False) * 150} $", command=upgrade_magazine, width=18)
+                        self.speed_up = Button(self.root, text=f"upgrade for {self.getattr('speed', False) * 20} $", command=upgrade_speed, width=18)
+                        self.shield_up = Button(self.root, text=f"upgrade for {self.getattr('shield', False) * 20} $", command=upgrade_shield, width=18)
+                        self.guns_up = Button(self.root, text=f"upgrade for {self.getattr('guns', False) * 1000} $", command=upgrade_guns, width=18)
+                        self.loading_up = Button(self.root, text=f"upgrade for {self.getattr('loading', False) * 20} $", command=upgrade_loading, width=18)
+                        self.magazine_up = Button(self.root, text=f"upgrade for {self.getattr('magazine', False) * 20} $", command=upgrade_magazine, width=18)
                         self.speed_up.place(x=400, y=200, anchor=CENTER)
                         self.shield_up.place(x=400, y=250, anchor=CENTER)
                         self.guns_up.place(x=400, y=300, anchor=CENTER)
@@ -604,61 +630,60 @@ class Main:
             self.loading_label.place(x=150, y=350, anchor=CENTER)
             self.magazine_label.place(x=150, y=400, anchor=CENTER)
 
-
             def upgrade_speed():
-                upgrade("speed", self.getattr('speed', False) * 50)
+                upgrade("speed", self.getattr('speed', False) * 20)
                 self.speed_label.configure(text=f"speed : {self.getattr('speed', False)}")
-                if self.getattr('speed', False) < 35:
-                    self.speed_up.configure(text=f"upgrade for {self.getattr('speed', False) * 50} $")
+                if self.getattr('speed', False) < 30:
+                    self.speed_up.configure(text=f"upgrade for {self.getattr('speed', False) * 20} $")
                 else:
                     self.speed_up.configure(text="max", state=DISABLED)
 
             def upgrade_shield():
-                upgrade("shield", self.getattr('shield', False) * 100)
+                upgrade("shield", self.getattr('shield', False) * 20)
                 self.shield_label.configure(text=f"shield : {self.getattr('shield', False)}")
-                if self.getattr('shield', False) < 100:
-                    self.shield_up.configure(text=f"upgrade for {self.getattr('shield', False) * 100} $")
+                if self.getattr('shield', False) < 50:
+                    self.shield_up.configure(text=f"upgrade for {self.getattr('shield', False) * 20} $")
                 else:
                     self.shield_up.configure(text="max", state=DISABLED)
 
             def upgrade_guns():
-                upgrade("guns", self.getattr('guns', False) * 800)
+                upgrade("guns", self.getattr('guns', False) * 1000)
                 self.guns_label.configure(text=f"guns : {self.getattr('guns', False)}")
                 if self.getattr('guns', False) < 3:
-                    self.guns_up.configure(text=f"upgrade for {self.getattr('guns', False) * 800} $")
+                    self.guns_up.configure(text=f"upgrade for {self.getattr('guns', False) * 1000} $")
                 else:
                     self.guns_up.configure(text="max", state=DISABLED)
 
             def upgrade_loading():
-                upgrade("loading", self.getattr('loading', False) * 250)
-                self.loading_label.configure(text=f"reloading time : {self.getattr('loading', False)}")
+                upgrade("loading", self.getattr('loading', False) * 20)
+                self.loading_label.configure(text=f"reloading magazine time : {self.getattr('loading', False)}")
                 if self.getattr('loading', False) > 3:
-                    self.loading_up.configure(text=f"upgrade for {self.getattr('loading', False) * 250} $")
+                    self.loading_up.configure(text=f"upgrade for {self.getattr('loading', False) * 20} $")
                 else:
                     self.loading_up.configure(text="max", state=DISABLED)
 
             def upgrade_magazine():
-                upgrade("magazine", self.getattr('magazine', False) * 150)
+                upgrade("magazine", self.getattr('magazine', False) * 20)
                 self.magazine_label.configure(text=f"magazine capacity : {self.getattr('magazine', False)}")
-                if self.getattr('magazine', False) < 150:
-                    self.magazine_up.configure(text=f"upgrade for {self.getattr('magazine', False) * 150} $")
+                if self.getattr('magazine', False) < 100:
+                    self.magazine_up.configure(text=f"upgrade for {self.getattr('magazine', False) * 20} $")
                 else:
                     self.magazine_up.configure(text="max", state=DISABLED)
 
-            self.speed_up = Button(self.root, text=f"upgrade for {self.getattr('speed', False) * 50} $", command=upgrade_speed, width=18)
-            if self.getattr("speed", False) >= 35:
+            self.speed_up = Button(self.root, text=f"upgrade for {self.getattr('speed', False) * 20} $", command=upgrade_speed, width=18)
+            if self.getattr("speed", False) >= 30:
                 self.speed_up.configure(text="max", state=DISABLED)
-            self.shield_up = Button(self.root, text=f"upgrade for {self.getattr('shield', False) * 100} $", command=upgrade_shield, width=18)
-            if self.getattr("shield", False) >= 100:
+            self.shield_up = Button(self.root, text=f"upgrade for {self.getattr('shield', False) * 20} $", command=upgrade_shield, width=18)
+            if self.getattr("shield", False) >= 50:
                 self.shield_up.configure(text="max", state=DISABLED)
-            self.guns_up = Button(self.root, text=f"upgrade for {self.getattr('guns', False) * 800} $", command=upgrade_guns, width=18)
+            self.guns_up = Button(self.root, text=f"upgrade for {self.getattr('guns', False) * 1000} $", command=upgrade_guns, width=18)
             if self.getattr("guns", False) >= 3:
                 self.guns_up.configure(text="max", state=DISABLED)
-            self.loading_up = Button(self.root, text=f"upgrade for {self.getattr('loading', False) * 250} $", command=upgrade_loading, width=18)
+            self.loading_up = Button(self.root, text=f"upgrade for {self.getattr('loading', False) * 20} $", command=upgrade_loading, width=18)
             if self.getattr("loading", False) <= 3:
                 self.loading_up.configure(text="max", state=DISABLED)
-            self.magazine_up = Button(self.root, text=f"upgrade for {self.getattr('magazine', False) * 150} $", command=upgrade_magazine, width=18)
-            if self.getattr("magazine", False) >= 150:
+            self.magazine_up = Button(self.root, text=f"upgrade for {self.getattr('magazine', False) * 20} $", command=upgrade_magazine, width=18)
+            if self.getattr("magazine", False) >= 100:
                 self.magazine_up.configure(text="max", state=DISABLED)
             self.speed_up.place(x=400, y=200, anchor=CENTER)
             self.shield_up.place(x=400, y=250, anchor=CENTER)
@@ -795,6 +820,7 @@ class Main:
             return self.sign_in()
 
         self.info_label.configure(text=f"Signed as: {self.name_info}")
+
         money_label = Label(self.root, text=f"{self.getattr('coins', True)} $", width=10, fg="black")
         money_label.place(x=300, y=60, anchor=CENTER)
         kills_label = Label(self.root, text=f"{self.getattr('kills', True)} kills", width=10, fg="black")
